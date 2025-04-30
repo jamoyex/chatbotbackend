@@ -421,19 +421,19 @@ try {
             <!-- Hardcoded Initial Messages -->
             <div class="message-container bot-message-container">
                 <div class="message bot-message">
-                    <div>Hey there! I'm Sarla 🌟</div>
+                    <div>Hello! I'm Sarla, your friendly bot assistant.</div>
                 </div>
             </div>
             <div class="message-container bot-message-container">
                 <div class="message bot-message">
                     <div>
-                        <img src="https://hellomarky.com/SarlaBot2.png" alt="Chat Image" style="max-width: 250px; max-height: 250px; border-radius: 10px; margin-top: 5px;">
+                        <img src="sarlawaving.png" alt="Chat Image" style="max-width: 150px; max-height: 150px; border-radius: 10px; margin-top: 5px;">
                     </div>
                 </div>
             </div>
             <div class="message-container bot-message-container">
                 <div class="message bot-message">
-                    <div>Ready to help you glam up your next event!</div>
+                    <div>I'm here to help with any question you have!</div>
                 </div>
             </div>
             <!-- Dynamically added messages will appear below -->
@@ -545,9 +545,9 @@ try {
         // Function to add the initial bot messages sequentially with delay
         async function displayInitialWelcome() {
             const welcomeMessages = [
-                "Hey there! I'm Sarla 🌟",
-                "https://hellomarky.com/SarlaBot2.png",
-                "Ready to help you glam up your next event!"
+                "Hello! I'm Sarla, your friendly bot assistant.",
+                window.location.origin + "/sarlawaving.png",
+                "I'm here to help with any question you have!"
             ];
             const delay = 1200; // Delay in milliseconds 
 
