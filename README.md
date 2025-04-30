@@ -34,13 +34,26 @@ git clone https://github.com/jamoyex/chatbotbackend.git
 mysql -u your_username -p < database.sql
 ```
 
-4. Update the database configuration in `config.php`:
-```php
-define('DB_HOST', 'your_host');
-define('DB_USER', 'your_username');
-define('DB_PASS', 'your_password');
-define('DB_NAME', 'botbuilders_db');
-```
+4. Configure the application:
+   - Copy `public_html/exampleconfig.php` to `public_html/config.php`
+   - Update the following in `config.php`:
+     ```php
+     // Database configuration
+     define('DB_HOST', 'your_database_host');
+     define('DB_USER', 'your_database_username');
+     define('DB_PASS', 'your_database_password');
+     define('DB_NAME', 'your_database_name');
+
+     // Chatbase configuration
+     define('CHATBASE_API_KEY', 'your_chatbase_api_key');
+     define('CHATBASE_BOT_ID', 'your_chatbase_bot_id');
+
+     // Admin credentials
+     define('ADMIN_CREDENTIALS', [
+         'admin' => 'your_secure_password',
+         // Add more admin users as needed
+     ]);
+     ```
 
 5. Ensure proper permissions are set for file uploads and logs
 
@@ -66,6 +79,15 @@ The application uses the following tables:
 - `messages`: Stores all chat messages
 - `admin_users`: Manages admin authentication
 - `chat_settings`: Stores configurable chat settings
+
+## Configuration
+
+The application requires a `config.php` file in the `public_html` directory. An example configuration file (`exampleconfig.php`) is provided. Make sure to:
+
+1. Copy `exampleconfig.php` to `config.php`
+2. Update all placeholder values with your actual credentials
+3. Never commit your actual `config.php` to version control
+4. Keep your `config.php` file secure and backed up
 
 ## License
 

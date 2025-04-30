@@ -29,6 +29,7 @@ Thumbs.db
 # Configuration files
 config.php
 config.local.php
+public_html/config.php
 
 # Temporary files
 *.tmp
