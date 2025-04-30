@@ -24,6 +24,7 @@ logs/
 # System files
 .DS_Store
 Thumbs.db
+._*
 
 # Configuration files
 config.php
@@ -31,4 +32,7 @@ config.local.php
 
 # Temporary files
 *.tmp
-*.temp 
+*.temp
+
+# Project specific
+public_html/onpointquilt/ 
