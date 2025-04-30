@@ -30,9 +30,12 @@ git clone https://github.com/jamoyex/chatbotbackend.git
 2. Configure your web server to point to the `public_html` directory
 
 3. Set up the database:
-```bash
-mysql -u your_username -p < database.sql
-```
+   - Create a MySQL database through your hosting control panel
+   - Import the database schema:
+     ```bash
+     mysql -u your_username -p your_database_name < database.sql
+     ```
+   - Or use your hosting provider's database management tool (like phpMyAdmin) to import the `database.sql` file
 
 4. Configure the application:
    - Copy `public_html/exampleconfig.php` to `public_html/config.php`

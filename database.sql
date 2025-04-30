@@ -1,7 +1,3 @@
--- Create database if it doesn't exist
-CREATE DATABASE IF NOT EXISTS `botbuilders_db`;
-USE `botbuilders_db`;
-
 -- Create conversations table
 CREATE TABLE IF NOT EXISTS `conversations` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
