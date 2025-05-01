@@ -53,7 +53,7 @@ git clone https://github.com/jamoyex/chatbotbackend.git
 
      // Admin credentials
      define('ADMIN_CREDENTIALS', [
-         'admin' => 'your_secure_password',
+         'admin' => 'admin123',
          // Add more admin users as needed
      ]);
      ```
@@ -66,8 +66,8 @@ To integrate the chatbot into any website as a plugin, follow these steps:
 
 1. Copy the contents of `iframe_code.md` to your website's HTML where you want the chatbot to appear
 2. Update the following URLs in the code:
-   - Replace `https://yourdomain.com/sarlaiframe.png` with your actual domain
-   - Replace `https://yourdomain.com/SarlaBot2.png` with your actual domain
+   - Replace `https://whereyourchatbotishosted.com/sarlaiframe.png` with a photo url of the bot on chat close
+   - Replace `https://whereyourchatbotishosted.com/SarlaBot2.png` with a photo url of the bot pop out
    - Replace `https://whereyourchatbotishosted.com` with your actual chatbot domain
 
    For example, if your chatbot is hosted at `https://chatbots.hellomarky.com`, the URLs should be:
@@ -119,4 +119,4 @@ This project is proprietary software. All rights reserved.
 
 ## Author
 
-BotBuilders Team 
+BotBuilders Team - Mark Renzo Mariveles
