@@ -350,16 +350,16 @@ try {
 
         /* Quick Replies */
         .quick-replies-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
             padding: 10px 20px;
-            background-color: #f8f9fa; /* Match chat background */
+            background-color:#f8f9fa;
             border-bottom: 1px solid #e9ecef;
-            overflow-x: auto;
-            overflow-y: hidden; /* Explicitly prevent vertical scroll */
-            white-space: nowrap;
+            justify-content: flex-end;
+            align-items: center;
             transition: opacity 0.3s ease, max-height 0.3s ease, padding 0.3s ease, border 0.3s ease;
             opacity: 1;
-            /* max-height: 100px; Removed - Let content define height */
-            flex-shrink: 0; /* Prevent shrinking in flex layout */
         }
         .quick-replies-container.hidden {
             opacity: 0;
@@ -378,21 +378,21 @@ try {
             scrollbar-width: none;  /* Firefox */
         }
         .quick-reply-button {
-            display: inline-block;
-            padding: 8px 15px;
-            margin-right: 10px;
+            flex: 0 0 auto;
+            padding: 4px 8px;
             border: 1px solid #ced4da;
             border-radius: 20px;
-            background-color: #ffffff;
+            background-color:rgb(255, 255, 255);
             color: #333;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             cursor: pointer;
-            white-space: nowrap;
             transition: background-color 0.2s ease, border-color 0.2s ease;
+            margin: 0;
         }
         .quick-reply-button:hover {
-            background-color: #f1f3f5;
+            background-color:rgb(181, 53, 53);
             border-color: #adb5bd;
+            color: white;
         }
         .quick-reply-button:last-child {
              margin-right: 0;

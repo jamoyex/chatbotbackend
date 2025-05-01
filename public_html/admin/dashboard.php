@@ -258,6 +258,43 @@ try {
         .unread-preview {
             background-color: rgba(59, 130, 246, 0.05);
         }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+            vertical-align: middle;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .3s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -269,6 +306,14 @@ try {
                 </div>
                 <div class="flex items-center">
                     <span class="text-gray-100 mr-4"><?php echo htmlspecialchars($_SESSION['admin_username']); ?></span>
+                    <div class="notification-toggle-container" style="display: flex; align-items: center; margin-right: 1rem;">
+                        <span style="color: #fff; margin-right: 8px;">Notifications</span>
+                        <label class="switch">
+                            <input type="checkbox" id="notificationToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span id="notifStatus" style="color: #fff; font-size: 12px; margin-left: 8px;">ON</span>
+                    </div>
                     <a href="logout.php" class="text-white hover:text-gray-200">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
@@ -504,17 +549,15 @@ try {
                                     const isCurrentlyActive = currentPreview.classList.contains('bg-blue-50');
                                     
                                     // Check for new messages
-                                    if (status === 'handled') {
-                                        const currentUserMessage = currentPreview.querySelector('.text-sm.text-gray-500').textContent;
-                                        const newUserMessage = newPreview.querySelector('.text-sm.text-gray-500').textContent;
-                                        
-                                        // If there's a new message and either:
-                                        // 1. The browser tab is not active, or
-                                        // 2. This is not the currently selected conversation
-                                        if (currentUserMessage !== newUserMessage && 
-                                            (!isPageVisible || conversationId !== currentConversationId)) {
-                                            shouldPlayNotification = true;
-                                        }
+                                    const currentUserMessage = currentPreview.querySelector('.text-sm.text-gray-500').textContent;
+                                    const newUserMessage = newPreview.querySelector('.text-sm.text-gray-500').textContent;
+                                    
+                                    // If there's a new message and either:
+                                    // 1. The browser tab is not active, or
+                                    // 2. This is not the currently selected conversation
+                                    if (currentUserMessage !== newUserMessage && 
+                                        (!isPageVisible || conversationId !== currentConversationId)) {
+                                        shouldPlayNotification = true;
                                     }
 
                                     // Update only the inner content
@@ -579,32 +622,32 @@ try {
             }, 3000);
         }
 
+        // Notification toggle logic
+        const notificationToggle = document.getElementById('notificationToggle');
+        const notifStatus = document.getElementById('notifStatus');
+
+        // Load saved notification preference
+        const notificationsEnabled = localStorage.getItem('notificationsEnabled') !== 'false';
+        notificationToggle.checked = notificationsEnabled;
+        notifStatus.textContent = notificationsEnabled ? 'ON' : 'OFF';
+
+        // Update label and save preference when toggled
+        notificationToggle.addEventListener('change', function() {
+            localStorage.setItem('notificationsEnabled', this.checked);
+            notifStatus.textContent = this.checked ? 'ON' : 'OFF';
+        });
+
+        // In playNotificationSound, check the toggle:
         function playNotificationSound() {
-            if (!notificationSound) {
-                console.error('Notification sound element not found');
+            if (!notificationSound || !notificationToggle.checked) {
                 return;
             }
-
-            console.log('Attempting to play sound...', {
-                soundElement: notificationSound,
-                soundSource: notificationSound.src,
-                muted: notificationSound.muted,
-                volume: notificationSound.volume
-            });
-            
-            notificationSound.currentTime = 0; // Reset sound to start
-            notificationSound.volume = 1.0; // Ensure volume is up
-            notificationSound.muted = false; // Ensure not muted
-            
+            notificationSound.currentTime = 0;
+            notificationSound.volume = 1.0;
+            notificationSound.muted = false;
             const playPromise = notificationSound.play();
             if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        console.log('Sound played successfully');
-                    })
-                    .catch(error => {
-                        console.error('Error playing sound:', error);
-                    });
+                playPromise.catch(() => {});
             }
         }
 

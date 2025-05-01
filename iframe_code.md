@@ -1,0 +1,101 @@
+<style>
+  #chat-launcher {
+    position: fixed;
+    bottom: 5px;
+    right: 30px;
+    z-index: 9999;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  #chat-launcher img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #chat-container {
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    right: 30px;
+    min-width: 350px;
+    width: 30vw;
+    height: 75vh;
+    z-index: 9998;
+    border-radius: 16px;
+    overflow: visible;
+  }
+
+  #chat-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  #bot-image {
+    position: absolute;
+    left: 0px;
+    top: -40px;
+    height: 100px;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  #close-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    background: #B31111;
+    color: #fff;
+    font-size: 28px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 9999;
+    display: none;
+  }
+</style>
+
+<!-- 🔘 Chat Launcher Image -->
+<div id="chat-launcher" onclick="toggleChat()">
+  <img src="https://yourdomain.com/sarlaiframe.png" alt="Chat Icon" />
+</div>
+
+<!-- 💬 Chat Container -->
+<div id="chat-container">
+  <img
+    id="bot-image"
+    src="https://yourdomain.com/SarlaBot2.png"
+    alt="Sarla Bot"
+  />
+  <iframe
+    id="chat-iframe"
+    src="https://whereyourchatbotishosted.com"
+  ></iframe>
+</div>
+
+<!-- ❌ Rounded Close Button -->
+<button id="close-chat" onclick="toggleChat()">×</button>
+
+<script>
+  function toggleChat() {
+    const container = document.getElementById('chat-container');
+    const launcher = document.getElementById('chat-launcher');
+    const closeBtn = document.getElementById('close-chat');
+
+    const isOpen = container.style.display === 'block';
+
+    container.style.display = isOpen ? 'none' : 'block';
+    launcher.style.display = isOpen ? 'block' : 'none';
+    closeBtn.style.display = isOpen ? 'none' : 'block';
+  }
+</script>

@@ -60,6 +60,27 @@ git clone https://github.com/jamoyex/chatbotbackend.git
 
 5. Ensure proper permissions are set for file uploads and logs
 
+## Plugin Installation (For Website Integration)
+
+To integrate the chatbot into any website as a plugin, follow these steps:
+
+1. Copy the contents of `iframe_code.md` to your website's HTML where you want the chatbot to appear
+2. Update the following URLs in the code:
+   - Replace `https://yourdomain.com/sarlaiframe.png` with your actual domain
+   - Replace `https://yourdomain.com/SarlaBot2.png` with your actual domain
+   - Replace `https://whereyourchatbotishosted.com` with your actual chatbot domain
+
+   For example, if your chatbot is hosted at `https://chatbots.hellomarky.com`, the URLs should be:
+   ```html
+   <img src="https://chatbots.hellomarky.com/sarlaiframe.png" alt="Chat Icon" />
+   <img src="https://chatbots.hellomarky.com/SarlaBot2.png" alt="Sarla Bot" />
+   <iframe src="https://chatbots.hellomarky.com"></iframe>
+   ```
+
+3. The chatbot will appear as a floating button in the bottom-right corner of your website
+4. Users can click the button to open the chat interface
+5. The chat window can be closed using the × button
+
 ## Default Admin Credentials
 
 After installation, you can log in to the admin panel with:
